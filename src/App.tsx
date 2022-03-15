@@ -1,12 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { GlobalStyles } from 'twin.macro';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GlobalStyles } from 'twin.macro';
+
+import AppProvider from './hooks';
+import Routes from './routes';
 
 import StylesBase from './styles/global';
 
-const App: React.FC = () =>{
+const App: React.FC = () => {
   return (
     <Router>
       <ToastContainer
@@ -20,10 +23,13 @@ const App: React.FC = () =>{
         draggable
         pauseOnHover
       />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
       <StylesBase />
       <GlobalStyles />
     </Router>
-  )
-}
+  );
+};
 
 export default App;

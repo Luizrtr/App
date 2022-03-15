@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import 'react-day-picker/lib/style.css';
 
 const StylesBase = createGlobalStyle`
  * {
@@ -33,8 +32,8 @@ const StylesBase = createGlobalStyle`
 }
 
 body {
-  background: var(--gray-900);
-  color: var(--white);
+  background: var(--white);
+  color: var(--gray-900);
 }
 
 body,

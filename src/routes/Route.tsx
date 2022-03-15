@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-indent */
-/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 import {
   RouteProps as ReactDOMRouteProps,
@@ -13,7 +12,6 @@ import jwtDecode from 'jwt-decode';
 import { toast } from 'react-toastify';
 
 import { useAuth } from '../hooks/auth';
-
 interface RouteProps extends ReactDOMRouteProps {
   isPrivate?: boolean;
   isRestricted?: boolean;
@@ -36,7 +34,7 @@ const Route: React.FC<RouteProps> = ({
   const [isAuth, setIsAuth] = useState<boolean>(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('@BMBTechHello:token');
+    const token = localStorage.getItem('@APPDec9:token');
 
     if (token === null && isPrivate !== !!user) {
       history.push('/login');
@@ -78,13 +76,14 @@ const Route: React.FC<RouteProps> = ({
   return (
     <ReactDOMRoute
       {...rest}
-      render={({ location }: any) => {
+      render={({ location }) => {
         return isPrivate === !!user
           ? [
+              
               (isAuth || location.pathname.includes('/login', undefined)) ? (
                   <Component key={uuid()} />
               ) : (
-                <div> Error 401</div>
+                <></>
               ),
             ]
           : [
