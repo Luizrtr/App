@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 
 const Login = lazy(() => import('../../pages/Login'));
 const Home = lazy(() => import('../../pages/Home'));
+const NewUser = lazy(() => import('../../pages/NewUser'));
 
 interface IRoutes {
   path: string[];
@@ -11,7 +12,7 @@ interface IRoutes {
   isRestricted?: boolean;
 }
 
-const fluss: IRoutes[] = [
+const AppRoutes: IRoutes[] = [
   {
     path: ['/'],
     component: Login,
@@ -24,6 +25,11 @@ const fluss: IRoutes[] = [
     exact: true,
   },
   {
+    path: ['/newUser'],
+    component: NewUser,
+    exact: true,
+  },
+  {
     path: ['/home'],
     component: Home,
     isPrivate: true,
@@ -31,4 +37,4 @@ const fluss: IRoutes[] = [
   },
 ];
 
-export default fluss;
+export default AppRoutes;
