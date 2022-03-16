@@ -10,7 +10,7 @@ interface AuthState {
 
 export interface SignInCredentials {
   login: string;
-  senha: string;
+  password: string;
 }
 
 export interface IUserData {
@@ -18,7 +18,7 @@ export interface IUserData {
   nome: string;
   email: string;
   nomeUsuario: string;
-  senha: string;
+  password: string;
   createdAt: string;
 }
 
@@ -42,14 +42,20 @@ export const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const signIn = useCallback(async ({ login, senha }) => {
-    const dataJson = { login, senha };
+  const signIn = useCallback(async ({ login, password }) => {
     const response = await api.put(
-      'http://localhost:2001',
+      'http://localhost/API-Rest-Users/Controllers/signIn.php',
+      { body: JSON.stringify(login, password) },
       {
-        dataJson,
+        headers: {
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Origin': 'https://www.example.com',
+          'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+        },
       },
     );
+
+    console.log(response.data);
 
     if (response.data?.token && response.data?.user) {
       const { token, user } = response.data;

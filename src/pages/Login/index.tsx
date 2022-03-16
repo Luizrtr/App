@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import image from '../../assets/Login/login.png';
 import Button from '../../components/Button';
 import { ContainerLogin } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 interface ILogin {
   email: string;
@@ -13,13 +14,10 @@ interface ILogin {
 
 export const Login: React.FC = () => {
   const { register, handleSubmit } = useForm();
+  const { signIn } = useAuth();
 
   const onSubmit = async (inputData: ILogin) => {
-    const data = {
-      user: inputData.email,
-      password: inputData.password,
-    };
-    console.log(data);
+    await signIn({ login: inputData.email, password: inputData.password });
   };
 
   return (
@@ -29,7 +27,7 @@ export const Login: React.FC = () => {
         <h1>
           Faça login no <span>painel</span>
         </h1>
-        <form  onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="boxInput">
             <label htmlFor="">Nome de Usuário ou Endereço de Email</label>
             <input

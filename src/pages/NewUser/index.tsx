@@ -5,6 +5,7 @@ import 'twin.macro';
 import { ContainerNewUser } from './styles';
 import image from '../../assets/Login/login.png';
 import Button from '../../components/Button';
+import api from '../../services/api';
 
 interface ICreate {
   name: string;
@@ -23,7 +24,13 @@ export const NewUser: React.FC = () => {
       email: inputData.email,
       password: inputData.password,
     };
-    console.log(data);
+    await api.post('API-Rest-Users/Controllers/create.php', data, {
+      headers: {
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': 'https://www.example.com',
+        'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+      },
+    });
   };
 
   return (

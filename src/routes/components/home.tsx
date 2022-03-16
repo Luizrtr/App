@@ -32,7 +32,7 @@ const AppRoutes: IRoutes[] = [
   {
     path: ['/home'],
     component: Home,
-    // isPrivate: true,
+    isPrivate: true,
     exact: true,
   },
 ];
